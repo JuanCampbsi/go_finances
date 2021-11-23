@@ -1,14 +1,16 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import { 
-  Container, 
+import {
+  Container,
   Header,
   UserInfo,
   Photo,
   User,
   UserGreeting,
-  UserName
+  UserName,
+  UserWrapper,
+  Icon
 
 } from './styles';
 
@@ -17,19 +19,17 @@ export function Dashboard() {
   return (
     <Container>
       <Header>
-
-      <UserInfo>
-        <Photo>
+       <UserWrapper>
+        <UserInfo>
+          <Photo 
+            source={{ uri: 'https://avatars.githubusercontent.com/u/45372981?v=4g' }} />
           <User>
-            <UserGreeting>
-              <UserName>
-
-              </UserName>
-            </UserGreeting>
+            <UserGreeting>Olá, </UserGreeting>
+            <UserName>Juan Campos</UserName>
           </User>
-        </Photo>
-      </UserInfo>
-
+          </UserInfo>
+          <Icon name={'power'}/>
+        </UserWrapper>
       </Header>
     </Container>
   )
