@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
-import  AppLoading  from 'expo-app-loading';
+import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'react-native';
 
 import {
   useFonts,
@@ -19,14 +20,15 @@ export default function App() {
     Poppins_500Medium,
     Poppins_700Bold
   });
-  
-  if(!fontsLoader){
+
+  if (!fontsLoader) {
     return <AppLoading />
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <StatusBar barStyle={'light-content'} />
+        <Dashboard />
     </ThemeProvider>
   )
 
