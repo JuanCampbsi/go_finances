@@ -5,10 +5,12 @@ import { Feather } from '@expo/vector-icons';
 
 export const Container = styled.View`
     flex: 1;
+
     background-color: ${({ theme }) => theme.colors.background};
 `;
 export const Header = styled.View`
     background-color: ${({ theme }) => theme.colors.primary};
+
     width: 100%;
     height: ${RFPercentage(42)}px;
     
@@ -20,6 +22,7 @@ export const Header = styled.View`
 export const UserWrapper = styled.View`
     width: 100%; 
     padding: 0 24px;
+
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -55,6 +58,12 @@ export const UserName = styled.Text`
 `;
 export const Icon = styled(Feather)`
     color: ${({ theme }) => theme.colors.secondary};
+    
     font-size: ${RFValue(24)}px;
 
 `;
+export const HighLightCards = styled.ScrollView.attrs({
+    horizontal: true,
+    showsHorizontalScrollIndicator: true,
+    contentContainerStyle: { paddingHorizontal: 24 }
+})``;

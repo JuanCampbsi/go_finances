@@ -21,7 +21,7 @@ export function HighLightCard (){
 
       <Footer>
         <Amount>R$ 17.400,00</Amount>
-        <LastTransaction>Último entrada dia 13 de abril</LastTransaction>
+        <LastTransaction>Última entrada dia 13 de abril</LastTransaction>
       </Footer>
 
 
