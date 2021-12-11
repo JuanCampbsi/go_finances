@@ -8,7 +8,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   background-color: ${({ theme }) => theme.colors.primary};
-
+  
   width: 100%;
   height: ${RFValue(113)}px;
 
@@ -33,3 +33,11 @@ export const Form = styled.View`
 `;
 
 export const Filds = styled.View``;
+
+export const FildsTypeButton = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-top: 8px;
+  margin-bottom: 16px;
+`;
