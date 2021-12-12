@@ -41,7 +41,7 @@ export const Name = styled.Text`
 export const Separator = styled.View`
   height: 1px;
   width: 100%;
-background-color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.text};
 `;
 
 export const Footer = styled.View`
