@@ -22,7 +22,7 @@ export const Icon = styled(Feather)`
 `;
 
 export const Category = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text_dark};
 
   font-size: ${RFValue(14)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
