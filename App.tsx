@@ -12,7 +12,9 @@ import {
 
 import theme from './src/global/styles/theme'
 
-import Register from './src/screens/Register';
+import AppRoutes from './src/Routes/app.routes';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 export default function App() {
   const [fontsLoader] = useFonts({
@@ -28,7 +30,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={'light-content'} />
-        <Register/>
+        <NavigationContainer>
+          <AppRoutes/>
+        </NavigationContainer>
     </ThemeProvider>
   )
 
