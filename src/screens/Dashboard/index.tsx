@@ -39,8 +39,7 @@ import { useFocusEffect } from '@react-navigation/native';
         .toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL'
-        });
-      
+        });      
         
           const date = Intl.DateTimeFormat('pt-BR', {
           day: '2-digit',
