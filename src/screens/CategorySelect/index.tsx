@@ -68,4 +68,3 @@ function handleCategorySelect(category: Category){
   );
 }
 
-export default CategorySelect;
