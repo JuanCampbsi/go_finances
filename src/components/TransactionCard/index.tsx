@@ -25,9 +25,9 @@ import { categories } from '../../utils/categories';
     }
 
     export function TransactionCard({ data } : Props) {
-      const category = categories.filter(
+      const [ category ]= categories.filter(
         item => item.key === data.category
-      )[0];
+      );
       return (
         <Container>
           <Title>
