@@ -1,4 +1,8 @@
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+
 import React from 'react';
+
 import { ThemeProvider } from 'styled-components/native';
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'react-native';
