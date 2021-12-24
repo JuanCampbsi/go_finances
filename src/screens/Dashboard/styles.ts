@@ -10,6 +10,7 @@ export const Container = styled.View`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.background};
 `;
+
 export const Header = styled.View`
     background-color: ${({ theme }) => theme.colors.primary};
 
@@ -20,6 +21,7 @@ export const Header = styled.View`
     align-items: flex-start;
     flex-direction: row;
 `;
+
 export const UserWrapper = styled.View`
     width: 100%; 
 
@@ -98,5 +100,4 @@ export const LoadContainer = styled.View`
     flex: 1;
     justify-content: center;
     align-items: center;
-
 `;

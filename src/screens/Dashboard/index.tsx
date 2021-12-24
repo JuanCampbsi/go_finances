@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { HighLightCard } from '../../components/HighlightCard';
 import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
 import {
@@ -42,8 +41,9 @@ interface HighLightData {
 export function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<DataListProps[]>([]);
+  const [newdata, setNewData] = useState<DataListProps[]>([]);
   const [highLightData, setHighLightData] = useState<HighLightData>({} as HighLightData);
-  const [lastTransactions, setLastTransactions] = useState('');
+
   const theme = useTheme();
 
   function getLastTransaction(
@@ -55,7 +55,7 @@ export function Dashboard() {
         .filter(transaction => transaction.type === type)
         .map(transaction => new Date(transaction.date).getTime())
       ))
-    return `${lastTransactions.getDate()} de ${lastTransactions.toLocaleString('pt-BR', {month: 'long'})}`
+    return `${lastTransactions.getDate()} de ${lastTransactions.toLocaleString('pt-BR', { month: 'long' })}`
   }
 
   async function loadTransactions() {
@@ -99,7 +99,7 @@ export function Dashboard() {
     setData(transactionsFormatted);
     const lastTransactionEntries = getLastTransaction(transactions, 'positive');
     const lastTransactionExpansive = getLastTransaction(transactions, 'negative');
-    const totalInterval = `01 à ${lastTransactionExpansive}`  
+    const totalInterval = `01 à ${lastTransactionExpansive}`
 
     const total = entriesTotal - expansiveTotal;
     setHighLightData({
@@ -128,9 +128,34 @@ export function Dashboard() {
     setIsLoading(false);
   }
 
+  async function handleRemove(id: string){
+    const dataKey = '@goFinances:transactions';
+    // const response = await AsyncStorage.getItem(dataKey);
+    // const dataFormatted = [
+    //   ...data
+    // ]
+
+    // await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted))
+
+    setData(oldSate => oldSate.filter( 
+        item => item.id !== id
+      ));
+   
+      try {
+        
+             
+      } catch (error) {
+      
+      }
+  
+
+    console.log(data)
+  }
+
   useEffect(() => {
     loadTransactions();
-
+    // const dataKey = '@goFinances:transactions';
+    // AsyncStorage.removeItem(dataKey);
   }, []);
 
   useFocusEffect(
@@ -193,7 +218,11 @@ export function Dashboard() {
               <TransactionList
                 data={data}
                 keyExtractor={item => item.id}
-                renderItem={({ item }) => <TransactionCard data={item} />}
+                renderItem={({ item }) => 
+                  <TransactionCard 
+                    data={item} 
+                    onPress={() => handleRemove(item.id)}
+                  />}
               />
             </Transactions>
           </>
