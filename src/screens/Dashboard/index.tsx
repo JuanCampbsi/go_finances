@@ -130,28 +130,16 @@ export function Dashboard() {
 
   async function handleRemove(id: string){
     const dataKey = '@goFinances:transactions';
-    // const response = await AsyncStorage.getItem(dataKey);
-    // const dataFormatted = [
-    //   ...data
-    // ]
-
-    // await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted))
+    const response = await AsyncStorage.getItem(dataKey);
 
     setData(oldSate => oldSate.filter( 
-        item => item.id !== id
-      ));
-   
-      try {
-        
-             
-      } catch (error) {
-      
-      }
+      item => item.id !== id       
+     ));
   
 
     console.log(data)
   }
-
+ 
   useEffect(() => {
     loadTransactions();
     // const dataKey = '@goFinances:transactions';
