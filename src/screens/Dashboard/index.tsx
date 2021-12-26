@@ -128,22 +128,31 @@ export function Dashboard() {
     setIsLoading(false);
   }
 
-  async function handleRemove(id: string){
+  async function handleRemove(id: string) {
     const dataKey = '@goFinances:transactions';
-    const response = await AsyncStorage.getItem(dataKey);
+    const dataArray = await AsyncStorage.getItem(dataKey);
+    const currentData = dataArray ? JSON.parse(dataArray) : [];
 
-    setData(oldSate => oldSate.filter( 
-      item => item.id !== id       
-     ));
-  
+    try {
 
-    console.log(data)
+      const dataNew = [...currentData];
+      const newData = currentData.findIndex((item: DataListProps) => item.id === id);
+      dataNew.splice(newData, 1);
+      
+      setData(oldSate => oldSate.filter(
+          item => item.id !== id
+      ));
+
+      AsyncStorage.setItem(dataKey, JSON.stringify(dataNew));    
+
+      
+    } catch (error) {
+
+    }
   }
- 
+
   useEffect(() => {
     loadTransactions();
-    // const dataKey = '@goFinances:transactions';
-    // AsyncStorage.removeItem(dataKey);
   }, []);
 
   useFocusEffect(
@@ -206,9 +215,9 @@ export function Dashboard() {
               <TransactionList
                 data={data}
                 keyExtractor={item => item.id}
-                renderItem={({ item }) => 
-                  <TransactionCard 
-                    data={item} 
+                renderItem={({ item }) =>
+                  <TransactionCard
+                    data={item}
                     onPress={() => handleRemove(item.id)}
                   />}
               />
