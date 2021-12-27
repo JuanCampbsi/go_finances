@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HistoryCard from '../../components/HistoryCard';
 import { VictoryPie } from 'victory-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 
 import { 
@@ -10,8 +12,14 @@ import {
   Header,
   Title,
   Content,
-  ChartContainer
+  ChartContainer,
+  MonthSelect,
+  MonthSelectButton,
+  MonthSelectIcon,
+  Month,
+
  } from './styles';
+ 
 import { categories } from '../../utils/categories';
 
  interface TransactionData {
@@ -21,6 +29,7 @@ import { categories } from '../../utils/categories';
   category: string;
   date: string;
  }
+
  interface CategoryData{
    key: string,
    name: string,
@@ -68,8 +77,9 @@ export function Resume(){
             currency: 'BRL'
           });
 
-          const percent = `${(categorySum / expansivesTotal * 100).toFixed(0)} %`;
           
+          const percent = `${(categorySum / expansivesTotal * 100).toFixed(0)} %`;
+         
           totalByCategory.push({
             key: category.key,
             name: category.name,
@@ -95,7 +105,27 @@ export function Resume(){
       </Header>
 
       
-      <Content>
+      <Content
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          padding: 24,
+          paddingBottom: useBottomTabBarHeight(),
+        }}
+      >
+        
+        <MonthSelect>
+          <MonthSelectButton>
+            <MonthSelectIcon name={'chevron-left'}/>
+          </MonthSelectButton>
+
+            <Month>Maio</Month>
+          
+          <MonthSelectButton>
+            <MonthSelectIcon name={'chevron-right'} />
+          </MonthSelectButton>
+        </MonthSelect>
+
+
           <ChartContainer>
             <VictoryPie 
               data={totalByCategories}
