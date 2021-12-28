@@ -39,9 +39,9 @@ interface HighLightData {
 }
 
 export function Dashboard() {
+  const [isRemove, setIsRemove] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<DataListProps[]>([]);
-  const [newdata, setNewData] = useState<DataListProps[]>([]);
   const [highLightData, setHighLightData] = useState<HighLightData>({} as HighLightData);
 
   const theme = useTheme();
@@ -126,15 +126,15 @@ export function Dashboard() {
       }
     })
     setIsLoading(false);
+    setIsRemove(false);
   }
 
   async function handleRemove(id: string) {
     const dataKey = '@goFinances:transactions';
     const dataArray = await AsyncStorage.getItem(dataKey);
-    const currentData = dataArray ? JSON.parse(dataArray) : [];
+    const currentData = dataArray ? JSON.parse(dataArray) : []; 
 
     try {
-
       const dataNew = [...currentData];
       const newData = currentData.findIndex((item: DataListProps) => item.id === id);
       dataNew.splice(newData, 1);
@@ -142,23 +142,18 @@ export function Dashboard() {
       setData(oldSate => oldSate.filter(
           item => item.id !== id
       ));
-
-      AsyncStorage.setItem(dataKey, JSON.stringify(dataNew));    
-
-      
+      AsyncStorage.setItem(dataKey, JSON.stringify(dataNew)); 
+             
     } catch (error) {
 
     }
+    setIsRemove(true);
   }
-
-  useEffect(() => {
-    loadTransactions();
-  }, []);
 
   useFocusEffect(
     useCallback(() => {
-      loadTransactions();
-    }, []),
+      loadTransactions();      
+    }, [isRemove]),
   );
 
 

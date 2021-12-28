@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HistoryCard from '../../components/HistoryCard';
@@ -173,8 +173,8 @@ export function Resume() {
                     }
                   }}
                   labelRadius={50}
-                  x='percent'
-                  y='total'
+                  x={(d) => d.percent }              
+                  y={(d) => d.total }                  
                 />
               </ChartContainer>
 
