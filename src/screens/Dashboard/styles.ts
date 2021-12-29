@@ -5,6 +5,7 @@ import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper
 import { Feather } from '@expo/vector-icons';
 
 import { DataListProps } from '.';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
     flex: 1;
@@ -101,3 +102,5 @@ export const LoadContainer = styled.View`
     justify-content: center;
     align-items: center;
 `;
+
+export const LogoutButton = styled(BorderlessButton)``;

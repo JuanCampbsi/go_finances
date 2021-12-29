@@ -12,7 +12,7 @@ import { Resume } from '../screens/Resume';
 const { Navigator, Screen} = createBottomTabNavigator();
 
 
-export default function AppRoutes (){
+export function AppRoutes (){
     const theme = useTheme();
     return(
         <Navigator
